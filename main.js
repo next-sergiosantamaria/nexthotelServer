@@ -19,13 +19,12 @@ server.listen(socketPort, function() {
 io.on('connection', function(socket) {
     socketIO = socket;
 	console.log('Un cliente se ha conectado');
-    socketIO.on('UserDatas', function(data) {
-        console.log(data);
-        io.emit("messages", data);
+    socketIO.on('userLogOut', function(data){
+        io.emit("logOutUser", data);
     });
-    socketIO.on('finishTesting', function(data){
-        console.log('Test terminado');
-        io.emit('finish', data);
+    socketIO.on('loginAndStatusUser', function(data){
+        console.log(data);
+        io.emit("refreshUsers", data);
     });
 });
 
