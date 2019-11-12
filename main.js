@@ -4,6 +4,7 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 var app = express();
 let apiRoutes = require("./routes/test.route.js")
+var sessionController = require('./controllers/sessionController');
 
 var server = require('http').Server(app);
 
@@ -23,10 +24,12 @@ io.on('connection', function(socket) {
         io.emit("logOutUser", data);
     });
     socketIO.on('loginAndStatusUser', function(data){
-        console.log(data);
         io.emit("refreshUsers", data);
+        sessionController.refresh(data, io);
     });
 });
+
+sessionController.expireSessions(io);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
