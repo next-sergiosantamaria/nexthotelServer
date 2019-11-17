@@ -20,7 +20,7 @@ var securityServer = https.createServer(options, app);
 var socketPort = process.env.PORT || 3031;
 var socketIO;
 
-var secio = require('socket.io')(securityServer);
+var secIO = require('socket.io')(securityServer);
 
 //var io = require('socket.io')(server, { origins: '*:*', forceNew: true });
 
