@@ -11,8 +11,10 @@ var https = require('https');
 var options = {
     key: fs.readFileSync('./sec/file.pem'),
     cert: fs.readFileSync('./sec/file.crt')
-};
+  };
+var securityServerPort = 443;
 
+var server = require('http').Server(app);
 var securityServer = https.createServer(options, app);
 
 var socketPort = process.env.PORT || 3031;
@@ -20,8 +22,14 @@ var socketIO;
 
 var secIO = require('socket.io')(securityServer);
 
-securityServer.listen(socketPort, function() {
-	console.log('socket server running on '+socketPort+' port');
+//var io = require('socket.io')(server, { origins: '*:*', forceNew: true });
+
+/*server.listen(socketPort, function() {
+	console.log('socket server running on 3031 port');
+});*/
+
+securityServer.listen(securityServerPort, function() {
+	console.log('socket server running on '+securityServerPort+' port');
 });
 
 secIO.on('connection', function(socket) {
@@ -54,7 +62,7 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-app.use('/', apiRoutes)
+app.use('/', apiRoutes);
 
 app.use(express.static('web'));
 
