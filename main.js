@@ -5,31 +5,46 @@ let mongoose = require('mongoose');
 var app = express();
 let apiRoutes = require("./routes/test.route.js")
 var sessionController = require('./controllers/sessionController');
+var fs = require('fs');
+var https = require('https');
+
+var options = {
+    key: fs.readFileSync('./sec/file.pem'),
+    cert: fs.readFileSync('./sec/file.crt')
+  };
+var securityServerPort = 443;
 
 var server = require('http').Server(app);
+var securityServer = https.createServer(options, app);
 
 var socketPort = process.env.PORT || 3031;
 var socketIO;
 
-var io = require('socket.io')(server, { origins: '*:*', forceNew: true });
+var secio = require('socket.io')(securityServer);
 
-server.listen(socketPort, function() {
+//var io = require('socket.io')(server, { origins: '*:*', forceNew: true });
+
+/*server.listen(socketPort, function() {
 	console.log('socket server running on 3031 port');
+});*/
+
+securityServer.listen(securityServerPort, function() {
+	console.log('socket server running on '+securityServerPort+' port');
 });
 
-io.on('connection', function(socket) {
+secIO.on('connection', function(socket) {
     socketIO = socket;
 	console.log('Un cliente se ha conectado');
     socketIO.on('userLogOut', function(data){
-        io.emit("logOutUser", data);
+        secIO.emit("logOutUser", data);
     });
     socketIO.on('loginAndStatusUser', function(data){
-        io.emit("refreshUsers", data);
-        sessionController.refresh(data, io);
+        secIO.emit("refreshUsers", data);
+        sessionController.refresh(data, secIO);
     });
 });
 
-sessionController.expireSessions(io);
+sessionController.expireSessions(secIO);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -43,7 +58,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/TestingDatas", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/TestingDatas", { useNewUrlParser: true });
 
 var port = process.env.PORT || 8080;
 
