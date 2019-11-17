@@ -16,20 +16,15 @@ exports.index = function (req, res) {
 
 exports.new = function (req, res) {
     var contact = new Contact();
-    contact.testerName = req.body.testerName ? req.body.testerName : "null";
+    contact.userId = req.body.userId ? req.body.userId : "null";
     contact.userName = req.body.userName ? req.body.userName : "null";
     contact.userBirthDate = req.body.userBirthDate ? req.body.userBirthDate : "null";
     contact.userGender = req.body.userGender ? req.body.userGender : "null";
     contact.currentDate = req.body.currentDate ? req.body.currentDate : "null";
-    contact.experimentDuration = req.body.experimentDuration ? req.body.experimentDuration : "null";
-    contact.roomOfexperiment = req.body.roomOfexperiment ? req.body.roomOfexperiment : "null";
-    contact.experiment = req.body.experiment ? req.body.experiment : "null";
-    contact.lampLed = req.body.lampLed ? req.body.lampLed : "null";
-    contact.lampInteraction = req.body.lampInteraction ? req.body.lampInteraction : "null";
-    contact.tvLed = req.body.tvLed ? req.body.tvLed : "null";
-    contact.tvInteraction = req.body.tvInteraction ? req.body.tvInteraction : "null";
-    contact.courtinLed = req.body.courtinLed ? req.body.courtinLed : "null";
-    contact.courtinInteraction = req.body.courtinInteraction ? req.body.courtinInteraction : "null";
+    contact.paneta = req.body.planeta ? req.body.planeta : "null";
+    contact.skills = req.body.skills ? req.body.skills : "null";
+    contact.proyecto = req.body.experiment ? req.body.experiment : "null";
+    contact.avatarConfig = req.body.avatarConfig ? req.body.avatarConfig : "null";
     console.log(req.body);
     contact.save(function (err) {
         // if (err)
