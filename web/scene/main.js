@@ -25,7 +25,7 @@ let interactiveObjects = [];
 
 const plantas = ['manoteras', 'tablas2-P1', 'tablas2-P0', 'tablas2-P2'];
 const modelos_head = ['head_1', 'head_2','head_3', 'head_4', 'head_5'];
-const modelos_body = ['body_1','body_2','body_3','body_4', 'body_5', 'body_6'];
+const modelos_body = ['body_1','body_2','body_3','body_4', 'body_5', 'body_6', 'body_7', 'body_8'];
 
 let initialBody = initialHead = 0;
 
