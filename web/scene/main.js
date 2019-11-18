@@ -46,8 +46,8 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    //socket = io.connect('https://34.240.9.59:443', {transports: ['websocket']});
-    socket = io.connect('https://192.168.0.157:3031', {transports: ['websocket']});
+    socket = io.connect('https://34.240.9.59:443', {transports: ['websocket']});
+    //socket = io.connect('https://192.168.0.157:3031', {transports: ['websocket']});
 
     socket.on('refreshUsers', function (data) {
         if ( saveData.userName && data.userName != undefined && data.userName != saveData.userName && data.office == saveData.office) {
