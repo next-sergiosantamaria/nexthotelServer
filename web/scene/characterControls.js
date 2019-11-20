@@ -93,3 +93,4 @@ keyControls = function(avatarObject) {
     };
 
 };
+debug = function() {}

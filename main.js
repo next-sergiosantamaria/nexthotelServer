@@ -2,7 +2,6 @@
 var express = require('express'); 
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-var app = express();
 let apiRoutes = require("./routes/test.route.js")
 var sessionController = require('./controllers/sessionController');
 var fs = require('fs');
@@ -13,7 +12,9 @@ var options = {
     key: fs.readFileSync('./sec/file.pem'),
     cert: fs.readFileSync('./sec/file.crt'),
     passphrase: process.env.HTTPS_PASSPHRASE || ''
-  };
+};
+
+var app = express();
 
 var securityServerPort = process.env.PORT || 3031;
 
@@ -40,8 +41,9 @@ app.use(express.static(process.env.SERVE_DIRECTORY || 'web'));
 
 app.use('/', apiRoutes);
 
-app.listen(port, function () {
-    console.log("Running RestHub on port " + port);
+
+https.createServer(options, app).listen(port, function () {
+    console.log("Running RestHub on  https://localhost:" + port);
 });
 
 secIO.on('connection', function(socket) {
@@ -53,6 +55,10 @@ secIO.on('connection', function(socket) {
     socketIO.on('loginAndStatusUser', function(data){
         secIO.emit("refreshUsers", data);
         sessionController.refresh(data, secIO);
+    });
+    socketIO.on('publicChat', function(data) {
+        console.log('publicChat: ' + data);
+        secIO.sockets.emit('publicChatResponses', data);
     });
 });
 

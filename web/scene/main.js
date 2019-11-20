@@ -1,3 +1,5 @@
+const HOST = 'localhost'; 
+const PORT = 3031;
 window.addEventListener('resize', onWindowResize, false);
 //Debugg options
 //Select true for skip config menu and seek to scene directly
@@ -46,7 +48,7 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    socket = io.connect('https://34.240.9.59:3031', {transports: ['websocket']});
+    socket = io.connect(`https://${HOST}:${PORT}`, {transports: ['websocket']});
     //socket = io.connect('https://192.168.0.157:3031', {transports: ['websocket']});
 
     socket.on('refreshUsers', function (data) {
@@ -63,6 +65,17 @@ $(document).ready(function () {
     socket.on('logOutUser', function (data) {
         scene.remove(scene.getObjectByName(data.userName));
     });
+
+    socket.on('publicChatResponses', function(text) {
+        console.log(text);
+    });
+      
+    document.getElementById('textGeneral').onkeydown = (ev) => {
+        if (ev.which === 13) {
+            socket.emit('publicChat', saveData.userName+ ': ' + ev.target.value);
+            ev.target.value = '';
+        }
+    };
 });
 
 function generateMenu(){
