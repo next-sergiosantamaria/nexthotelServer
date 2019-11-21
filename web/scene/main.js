@@ -1,5 +1,3 @@
-const HOST = 'localhost'; 
-const PORT = 3031;
 window.addEventListener('resize', onWindowResize, false);
 //Debugg options
 //Select true for skip config menu and seek to scene directly
@@ -48,7 +46,7 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    socket = io.connect(`https://${HOST}:${PORT}`, {transports: ['websocket']});
+    socket = io.connect(`https://10.23.33.191:3031`, {transports: ['websocket']});
     //socket = io.connect('https://192.168.0.157:3031', {transports: ['websocket']});
 
     socket.on('refreshUsers', function (data) {

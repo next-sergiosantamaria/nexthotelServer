@@ -18,7 +18,7 @@ var app = express();
 
 var securityServerPort = process.env.PORT || 3031;
 
-var port = process.env.PORT || 8085;
+var port = process.env.API_PORT || 8080;
 
 var securityServer = https.createServer(options, app);
 
