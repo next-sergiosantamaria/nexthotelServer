@@ -52,38 +52,40 @@ keyControls = function(avatarObject) {
     };
     
     document.onkeydown = (event) => {
-        switch( true ){
-            //move up
-            case event.key == "w" || event.key == "ArrowUp":
-                this.moveForward = true;
-                avatarObject.rotation.y = -Math.PI / 2;
-                this.action = "walk";
-            break; 
-            //move down
-            case event.key == "s" || event.key == "ArrowDown":
-                this.moveBackward = true;
-                avatarObject.rotation.y = Math.PI / 2;
-                this.action = "walk";
-            break; 
-            //move left
-            case event.key == "a" || event.key == "ArrowLeft":
-                this.moveLeft = true;
-                avatarObject.rotation.y = 0;
-                this.action = "walk";
-            break; 
-            //move right
-            case event.key == "d" || event.key == "ArrowRight":
-                this.moveRight = true;
-                avatarObject.rotation.y = Math.PI;
-                this.action = "walk";
-            break;
-            //jumping
-            case event.key == " ":
-                this.action = "jump";
-            break;
+        if(!event.path[0] || event.path[0].id !== 'textGeneral') {
+            switch( true ){
+                //move up
+                case event.key == "w" || event.key == "ArrowUp":
+                    this.moveForward = true;
+                    avatarObject.rotation.y = -Math.PI / 2;
+                    this.action = "walk";
+                break; 
+                //move down
+                case event.key == "s" || event.key == "ArrowDown":
+                    this.moveBackward = true;
+                    avatarObject.rotation.y = Math.PI / 2;
+                    this.action = "walk";
+                break; 
+                //move left
+                case event.key == "a" || event.key == "ArrowLeft":
+                    this.moveLeft = true;
+                    avatarObject.rotation.y = 0;
+                    this.action = "walk";
+                break; 
+                //move right
+                case event.key == "d" || event.key == "ArrowRight":
+                    this.moveRight = true;
+                    avatarObject.rotation.y = Math.PI;
+                    this.action = "walk";
+                break;
+                //jumping
+                case event.key == " ":
+                    this.action = "jump";
+                break;
+            }
+            this.direction.x = ( Number( this.moveForward ) - Number( this.moveBackward )) * this.moveSpeed;
+            this.direction.z = ( Number( this.moveLeft ) - Number( this.moveRight  )) * this.moveSpeed;
         }
-        this.direction.x = ( Number( this.moveForward ) - Number( this.moveBackward )) * this.moveSpeed;
-        this.direction.z = ( Number( this.moveLeft ) - Number( this.moveRight  )) * this.moveSpeed;
     };
     document.onkeyup = () => {
         this.moveForward = this.moveBackward = this.moveLeft = this.moveRight = false;    
