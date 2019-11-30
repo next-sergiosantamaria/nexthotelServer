@@ -46,7 +46,7 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    socket = io.connect(`https://10.23.33.191:3031`, {transports: ['websocket']});
+    socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
     //socket = io.connect('https://192.168.0.157:3031', {transports: ['websocket']});
 
     socket.on('refreshUsers', function (data) {
@@ -66,6 +66,14 @@ $(document).ready(function () {
 
     socket.on('publicChatResponses', function(text) {
         console.log(text);
+        const user = externaUsersList[text.replace(/:.*/,'')];
+        if (user) {
+            const msg = text.replace(/.*?:/,'');
+            const label = chatLabel(msg);
+            user.avatarModel.remove(user.avatarModel.children.find(item => item.chat));
+            user.avatarModel.add(label);
+            setTimeout(()=> user.avatarModel.remove(label), 2000);
+        }
     });
       
     document.getElementById('textGeneral').onkeydown = (ev) => {
@@ -423,28 +431,40 @@ function render() {
     if(turnOnCollision) checkCollision(collisionCube);
 }
 
-function initLabelMaterial( text ) {
+function initLabelMaterial( text, background = true ) {
     var canvas = document.createElement( 'canvas' );
     var ctx = canvas.getContext( '2d' );
-    ctx.fillStyle = "rgba(0,0,0,0.4)";
+    text+=' '
+    ctx.fillStyle = background ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0)";
     ctx.fillRect( 0, 0, 25*text.length, 60 );
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = background ? 'white' : 'rgb(214, 161, 60)' ;
     ctx.font = `15pt bbvaweb`;
     ctx.textAlign = 'middle';
     ctx.textBaseline = 'middle';
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 4;
+    ctx.shadowColor = "rgba(0,0,0,0.4)";
+    ctx.shadowBlur = 4;
     ctx.fillText( text, 20, 30 );
     var map = new THREE.CanvasTexture( canvas );
     return new THREE.SpriteMaterial( { map } );
 }
   
-function initLabels(name) {
-    spriteLabel = new THREE.Sprite( initLabelMaterial( name ) );
+function initLabels(name, background = true) {
+    spriteLabel = new THREE.Sprite( initLabelMaterial( name, background ) );
     spriteLabel.position.set( 0, 0.3, 0 );
     spriteLabel.scale.set( 0.3, 0.15, 1 );
     spriteLabel.center.x = (0.042*name.length).toFixed(2);
     return spriteLabel;
 }
 
+function chatLabel(msg) {
+    const label = initLabels(msg, false);
+    label.position.set( 0, 0.44, 0 );
+    label.chat = true;
+    return label;
+}
+ 
 function movement(value, object, delay, duration, easingType) {
     new TWEEN.Tween(object)
         .to(value, duration)
