@@ -53,12 +53,17 @@ secIO.on('connection', function(socket) {
         secIO.emit("logOutUser", data);
     });
     socketIO.on('loginAndStatusUser', function(data){
+        //console.log(data);
         secIO.emit("refreshUsers", data);
         sessionController.refresh(data, secIO);
     });
     socketIO.on('publicChat', function(data) {
         console.log('publicChat: ' + data);
         secIO.sockets.emit('publicChatResponses', data);
+    });
+    socketIO.on('privateChat', function(data) {
+        console.log('privateChat: ' + data);
+        secIO.sockets.emit(data.receiver, data);
     });
 });
 

@@ -1,10 +1,42 @@
+function  openPrivateChat(){
+    TweenMax.to("#privateChatWindow", 0.2, { 
+        width: 300, 
+        height: 150, 
+        borderTopWidth:2,
+        borderRightWidth:2,
+        borderBottomWidth:2, 
+        borderLeftWidth:2, 
+        ease: Back.easeOut 
+    });
+};
+
+function fillWithNewMessage(writer, text, owner) {
+    let textToPrint = owner ? "<b>you:</b> " + text : "<b>"+writer+"</b>" + ": " + text;
+    var node = document.getElementById("chatMessageList"); 
+    node.insertAdjacentHTML("afterbegin", '<p class="messageReceiverText">'+textToPrint+'</p>');
+}
+
 function bathEasterEgg(name) {
-    console.log("has colisionado con: ", name);
-    TweenMax.to("#popInfoBox", 0.2, { width: 450, height: 250, ease: Back.easeOut });
+    TweenMax.to("#popInfoBox", 0.2, { 
+        width: 450, 
+        height: 250, 
+        borderTopWidth:2,
+        borderRightWidth:2,
+        borderBottomWidth:2, 
+        borderLeftWidth:2, 
+        ease: Back.easeOut 
+    });
 }
 
 function unDoSomething(){
-    TweenMax.to("#popInfoBox", 0.2, { width: 0, height: 0, ease: Back.easeIn });
+    TweenMax.to("#popInfoBox, #privateChatWindow", 0.2, { 
+        width: 0, 
+        height: 0,
+        borderTopWidth:0,
+        borderRightWidth:0,
+        borderBottomWidth:0, 
+        borderLeftWidth:0, 
+        ease: Back.easeIn });
 }
 
 function doSomething(objectName){
@@ -71,6 +103,9 @@ function doSomething(objectName){
             break;
         case "laboratorio":
             bathEasterEgg(objectName);   
+            break;
+        default:
+            console.log("collision con usuario: ", objectName);
             break;
     }
 };

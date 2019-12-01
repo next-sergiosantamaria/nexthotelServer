@@ -13,7 +13,7 @@ keyControls = function(avatarObject) {
 
     this.direction = { "x":0, "y":0, "z":0 };
     this.checkCollision = () => false;
-    this.action = "walk";
+    this.action = "stand";
     
     document.getElementById("container").onmousedown  = () => {this.mouseClicked = true;}
     document.getElementById("container").onmouseup  = () => {this.mouseClicked = false;}
@@ -40,6 +40,18 @@ keyControls = function(avatarObject) {
         this.direction.z = 0;
     }
 
+    this.sendMessage = (message) => {
+        if(socket) {  
+            if (privateChatReceiverUser) {
+                fillWithNewMessage(saveData.userName, message, true);
+                socket.emit('privateChat', { sender: saveData.userName, receiver: privateChatReceiverUser, message: message});
+            }
+            else if(saveData && saveData.userName){ 
+                socket.emit('publicChat', { sender: saveData.userName, message: message});
+            }
+        }
+    }
+
     this.blockPosition = {
         w: () => { this.blockForward = true },
         ArrowUp: () => { this.blockForward = true},
@@ -52,7 +64,14 @@ keyControls = function(avatarObject) {
     };
     
     document.onkeydown = (event) => {
-        if(!event.path[0] || event.path[0].id !== 'textGeneral') {
+        if(event.path[0].type == "text") {
+            switch(true) {
+                case event.key == "Enter":
+                    this.sendMessage(event.path[0].value);
+                    event.path[0].value = '';
+            }
+        }
+        else {
             switch( true ){
                 //move up
                 case event.key == "w" || event.key == "ArrowUp":
