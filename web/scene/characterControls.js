@@ -114,7 +114,7 @@ keyControls = function(avatarObject) {
         this.moveForward = this.moveBackward = this.moveLeft = this.moveRight = false;    
         this.direction.x = 0;
         this.direction.z = 0;
-        this.action = "stand";
+        this.action = "walk";
     };
 
 };
