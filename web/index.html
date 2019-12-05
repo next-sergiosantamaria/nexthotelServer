@@ -22,11 +22,11 @@
         <div id="avatarNamegBox" class="avatarNamegBox">
             <div class="stepTitle">Introduce un nombre para tu avatar:</div>
             <div class="imputNameBox">
-                <input id="inputaNameLabel" type="text" maxlength="12"/>
+                <input id="inputaNameLabel" onkeyup="checkIfUserExists(this)" type="text" maxlength="12"/>
             </div>
             <div class="navigateButtons">
                 <div onclick="tl.reverse()" class="navigateBackButton">Volver</div>
-                <div onclick="tl.tweenTo('configAvatar')" class="navigateContinueButton">Continuar</div>
+                <div onclick="this.getAttribute('disabled') ? 0 : tl.tweenTo('configAvatar')" disabled="true" class="navigateContinueButton" id="configAvatar">Continuar</div>
             </div>
         </div>
         <div id="avatarConfigBox" class="avatarConfigBox">
@@ -53,7 +53,13 @@
         </div>
     </div>
     <img onclick="window.open('https://sites.google.com/bbva.com/hciclan','new_window');" class="clanLogo" src="./images/logoHCI_small.png"></img>
-    <div class="debugWindow" id="debugWindow">|</div>
+    <div class="chatWindow" id="chatWindow">
+        <input id="textGeneral" type="text">
+    </div>
+    <div class="privateChatWindow" id="privateChatWindow">
+        <div class="chatMessageList" id="chatMessageList"></div>
+        <input class="textPrivate" id="textPrivate" type="text">
+    </div>
 
     <script type="text/javascript" src="libs/jquery-2.1.0.min.js"></script>
 
@@ -71,10 +77,10 @@
     <script type="text/javascript" src="libs/OBJLoader.js"></script>
     <script type="text/javascript" src="libs/tween.js"></script>
     <script type="text/javascript" src="libs/TweenMax.min.js"></script>
+    <script src="./scene/login.js"></script>
     <script src="./scene/animations.js"></script>
     <script src="./scene/interactMethods.js"></script>
     <script src="./scene/characterControls.js"></script>
-    <script src="./scene/debug.js"></script>
     <script src="./scene/main.js"></script>
 </body>
 </html>
