@@ -46,8 +46,8 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    //socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
-    socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
+    socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
+    //socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
 
     socket.on('newUserLogin', function(data){
         Object.values(data).map( element => {
@@ -354,7 +354,7 @@ function checkCollision(cube) {
         if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
             nearCol = collisionResults.reduce((max = {}, item) => { item.distance <= max.distance ? max : item; });
             if(nearCol) {
-                avatarControls.blockIfCollision();
+                if(nearCol.object.objectType !== 'otherUser') avatarControls.blockIfCollision();
                 if( previousCollision == nearCol.object.name ){
                     debug(nearCol, originPoint);
                     return nearCol;

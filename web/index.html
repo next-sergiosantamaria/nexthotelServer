@@ -12,6 +12,10 @@
     <div id="container" class="displayOff">
         <div onclick="tl.tweenTo('selectOffice')" class="navigateBackButton minButton">Volver</div>
         <div id="popInfoBox" class="popInfoBox"></div>
+        <div class="publicChatWindow" id="publicChatWindow">
+            <div class="publicChatButton" onclick="openPublicChat()"></div>
+            <input id="textGeneral" type="text" placeholder="Envìa un mensaje público...">
+        </div>
     </div>
     <div id="mainScreen" class="mainScreen">
         <div id="logosBox" class="logosBox">
@@ -53,14 +57,11 @@
         </div>
     </div>
     <img onclick="window.open('https://sites.google.com/bbva.com/hciclan','new_window');" class="clanLogo" src="./images/logoHCI_small.png"></img>
-    <div class="chatWindow" id="chatWindow">
-        <input id="textGeneral" type="text">
-    </div>
     <div class="privateChatWindow" id="privateChatWindow">
         <div class="changeMessageListBox">
             <div class="chatMessageList" id="chatMessageList"></div>
         </div>
-        <input class="textPrivate" id="textPrivate" type="text">
+        <input class="textPrivate" id="textPrivate" type="text" placeholder="Escribe tu mensaje...">
     </div>
 
     <script type="text/javascript" src="libs/jquery-2.1.0.min.js"></script>

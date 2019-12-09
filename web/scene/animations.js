@@ -20,3 +20,10 @@ tl
 function focusOnImput() {
     document.getElementById("inputaNameLabel").focus();
 }
+
+function openPublicChat(){
+    const status = document.getElementById("textGeneral").offsetWidth > 2;
+    const opened = status ? { width: '0%', padding: '2px' } : { width: '80%', padding: '10px' };
+    TweenMax.to("#textGeneral", 0.3, { width: opened.width, paddingLeft: opened.padding, ease: Power1.easeOut});
+    !status ? document.getElementById("textGeneral").focus() : document.getElementById("container").focus();
+}
