@@ -46,8 +46,8 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
-    //socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
+    //socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
+    socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
 
     socket.on('newUserLogin', function(data){
         Object.values(data).map( element => {
@@ -91,8 +91,9 @@ function subscribeToPersonalChannel(userName) {
         collisionPosition = scene.getObjectByName( data.sender ).position;
         //save user sender name to indentify private conversation on sendMessage() method
         privateChatReceiverUser = data.sender;
-        openPrivateChat();
+        if( document.getElementById("privateChatWindow").offsetTop < 0 ) openPrivateChat();
         fillWithNewMessage(data.sender, data.message, false);
+        new Audio('../audio/stairs.mp3').play();
     });
 };
 

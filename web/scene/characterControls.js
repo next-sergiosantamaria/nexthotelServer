@@ -44,6 +44,7 @@ keyControls = function(avatarObject) {
         if(socket) {  
             if (privateChatReceiverUser) {
                 fillWithNewMessage(saveData.userName, message, true);
+                new Audio('./audio/clearly.mp3').play();
                 socket.emit('privateChat', { sender: saveData.userName, receiver: privateChatReceiverUser, message: message});
             }
             else if(saveData && saveData.userName){ 
