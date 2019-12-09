@@ -15,7 +15,9 @@ function recoverUsers(){
 };
 
 function refreshUserPosition(data) {
-  sessions[data.userName].position = data.position;
+  if(sessions[data.userName]) {
+    sessions[data.userName].position = data.position;
+  }
 }
 
 function expireSessions(io) {

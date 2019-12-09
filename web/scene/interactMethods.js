@@ -21,7 +21,7 @@ function removeCollision(){
     });
     //hide private chat box
     TweenMax.to(".privateChatWindow", 0.2, { 
-        bottom: 1000, 
+        bottom: 1500, 
         ease: Power1.easeIn });
     //remove private chat text lines
     const node= document.getElementById("chatMessageList");

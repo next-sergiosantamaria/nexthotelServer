@@ -64,11 +64,11 @@ keyControls = function(avatarObject) {
     };
     
     document.onkeydown = (event) => {
-        if(event.path[0].type == "text") {
+        if(event.target.type == "text") {
             switch(true) {
                 case event.key == "Enter":
-                    this.sendMessage(event.path[0].value);
-                    event.path[0].value = '';
+                    this.sendMessage(event.target.value);
+                    event.target.value = '';
             }
         }
         else {
