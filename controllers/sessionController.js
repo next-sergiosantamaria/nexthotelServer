@@ -1,22 +1,26 @@
-const TIMEOUT = 30 * 1000;
 const sessions = {};
 let usersLength = 0;
 
-function refresh(data) {
+function addNewUser(data) {
   data.timestamp = Date.now();
-  sessions[`${data.userName};;${data.office}`] = data;
+  sessions[data.userName] = data;
 };
+
+function removeUser(data){
+  delete sessions[data.userName];
+};
+
+function recoverUsers(){
+  return sessions;
+};
+
+function refreshUserPosition(data) {
+  sessions[data.userName].position = data.position;
+}
 
 function expireSessions(io) {
   const keys = Object.keys(sessions);
-  const now = Date.now();
 
-  keys.forEach(key => {
-    if (sessions[key].timestamp + TIMEOUT < now) {
-      io.emit("logOutUser", sessions[key]);
-      delete sessions[key];
-    }
-  });
   if (keys.length !== usersLength) {
     usersLength = keys.length;
     console.log('Connected users: ');
@@ -28,7 +32,10 @@ function expireSessions(io) {
 const list = () => Object.keys(sessions);
 
 module.exports = {
-  refresh, 
+  addNewUser,
+  removeUser,
   expireSessions,
-  list
+  refreshUserPosition,
+  list,
+  recoverUsers
 }

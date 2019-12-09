@@ -48,22 +48,26 @@ https.createServer(options, app).listen(port, function () {
 
 secIO.on('connection', function(socket) {
     socketIO = socket;
-	console.log('Un cliente se ha conectado');
     socketIO.on('userLogOut', function(data){
         secIO.emit("logOutUser", data);
     });
-    socketIO.on('loginAndStatusUser', function(data){
-        //console.log(data);
+    socketIO.on('loginUser', function(data){
+        sessionController.addNewUser(data);
+        secIO.emit("newUserLogin", sessionController.recoverUsers());
+    });
+    socketIO.on('StatusUser', function(data){
         secIO.emit("refreshUsers", data);
-        sessionController.refresh(data, secIO);
+        sessionController.refreshUserPosition(data);
     });
     socketIO.on('publicChat', function(data) {
-        console.log('publicChat: ' + data);
         secIO.sockets.emit('publicChatResponses', data);
     });
     socketIO.on('privateChat', function(data) {
-        console.log('privateChat: ' + data);
         secIO.sockets.emit(data.receiver, data);
+    });
+    socketIO.on('sendLogOutUser', function(data){
+        secIO.emit("logOutUser", data);
+        sessionController.removeUser(data);
     });
 });
 

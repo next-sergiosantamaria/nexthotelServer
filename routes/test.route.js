@@ -15,8 +15,7 @@ router.route('/newUser')
 
 router.get('/user/list', (req, res) => {
     res.json(sessionController.list().map(item => ({
-        name: item.split(';;')[0],
-        building: item.split(';;')[1]
+        name: item
     })));
 });
 
