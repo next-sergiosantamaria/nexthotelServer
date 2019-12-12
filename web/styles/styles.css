@@ -352,8 +352,8 @@ html,body {
 
 .chatMessageList {
   position: relative;
-  height: 150px;
-  bottom: 25px;
+  min-height: 150px;
+  bottom: 0px;
   width: 100%;
   float: left;
   background-color: white;

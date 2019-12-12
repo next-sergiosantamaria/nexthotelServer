@@ -46,8 +46,8 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    //socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
-    socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
+    socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
+    //socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
 
     socket.on('newUserLogin', function(data){
         Object.values(data).map( element => {
@@ -87,12 +87,14 @@ $(window).on("beforeunload", function() {
 
 function subscribeToPersonalChannel(userName) {
     socket.on(userName, function (data) {
+        const messageListWindow =  document.getElementById("changeMessageListBox");
         //save position of other user to hide chat windows if you left of conversation
         collisionPosition = scene.getObjectByName( data.sender ).position;
         //save user sender name to indentify private conversation on sendMessage() method
         privateChatReceiverUser = data.sender;
         if( document.getElementById("privateChatWindow").offsetTop < 0 ) openPrivateChat();
         fillWithNewMessage(data.sender, data.message, false);
+        messageListWindow.scrollTop = messageListWindow.scrollHeight - messageListWindow.clientHeight;
         new Audio('../audio/stairs.mp3').play();
     });
 };

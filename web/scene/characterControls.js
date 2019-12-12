@@ -43,8 +43,10 @@ keyControls = function(avatarObject) {
     this.sendMessage = (message) => {
         if(socket && message && message !== '') {  
             if (privateChatReceiverUser) {
+                const messageListWindow =  document.getElementById("changeMessageListBox");
                 fillWithNewMessage(saveData.userName, message, true);
                 new Audio('./audio/clearly.mp3').play();
+                messageListWindow.scrollTop = messageListWindow.scrollHeight - messageListWindow.clientHeight;
                 socket.emit('privateChat', { sender: saveData.userName, receiver: privateChatReceiverUser, message: message});
                 document.getElementById('textPrivate').value = '';
                 document.getElementById('textPrivate').focus();
