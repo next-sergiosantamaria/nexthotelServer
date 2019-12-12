@@ -348,7 +348,7 @@ html,body {
   overflow-anchor: none;
 }
 
-/*.changeMessageListBox::-webkit-scrollbar {display: none;}*/
+.changeMessageListBox::-webkit-scrollbar {display: none;}
 
 .chatMessageList {
   position: relative;
