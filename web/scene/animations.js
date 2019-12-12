@@ -5,16 +5,16 @@ let animVelocity = 0.5;
 let tl = new TimelineMax({paused: true});
 
 tl
-    .to("#logosBox", animVelocity, {x: -1000, ease: Back.easeInOut.config(1.4)})
+    .to("#logosBox", animVelocity, {x: -1500, ease: Back.easeInOut.config(1.4)})
     .to("#avatarNamegBox", animVelocity, {left: 0, onComplete: focusOnImput, ease: Back.easeInOut.config(1.4)})
     .addLabel("configName")
-    .to("#avatarNamegBox", animVelocity, {left: -2500, ease: Back.easeInOut.config(1.4)})
+    .to("#avatarNamegBox", animVelocity, {left: -3000, ease: Back.easeInOut.config(1.4)})
     .to("#avatarConfigBox", animVelocity, {left: 0, ease: Back.easeInOut.config(1.4)})
     .addLabel("configAvatar")
-    .to("#avatarConfigBox", animVelocity, {left: -2500, ease: Back.easeInOut.config(1.4)})
+    .to("#avatarConfigBox", animVelocity, {left: -3000, ease: Back.easeInOut.config(1.4)})
     .to("#officeSelectorMenu", animVelocity, {left: 0, ease: Back.easeInOut.config(1.4)})
     .addLabel("selectOffice")
-    .to("#mainScreen", animVelocity*2, {left: -2500, ease: Back.easeOut.config(1.4)})
+    .to("#mainScreen", animVelocity*2, {left: -3000, ease: Back.easeOut.config(1.4)})
     .addLabel("openApp");
 
 function focusOnImput() {
@@ -33,9 +33,14 @@ function removeCollision(){
         ease: Power1.easeIn });
     //remove private chat text lines
     const node= document.getElementById("chatMessageList");
+    const popInfoNode = document.getElementById("popInfoBox");
     
     while (node.firstChild) {
         node.removeChild(node.firstChild);
+    }
+
+    while (popInfoNode.firstChild) {
+        popInfoNode.removeChild(popInfoNode.firstChild);
     }
 
     document.body.focus();
@@ -70,4 +75,6 @@ function showSectionInfo(name) {;
         left: 30, 
         ease: Back.easeOut 
     });
+    var popInfoNode = document.getElementById("popInfoBox");
+    popInfoNode.insertAdjacentHTML("beforeend", '<p class="popInfoTitle">' + name + '</p>');
 }

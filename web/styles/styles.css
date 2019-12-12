@@ -220,6 +220,7 @@ html,body {
   top: 30px;
   left: 30px;
   width: 20%;
+  line-height: 22px;
 }
 
 .popInfoBox {
@@ -231,6 +232,10 @@ html,body {
   border-radius: 3px;
   background: white;
   border: solid 1px #2c2c2c;
+}
+
+.popInfoTitle {
+  font-size: 14px;
 }
 
 .publicChatWindow{
@@ -293,6 +298,47 @@ html,body {
   margin-bottom: -25px;
 }
 
+.privateChatWindowClose {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: black;
+  font-size: 12px;
+  right: 3px;
+  cursor: pointer;
+  top: 3px;
+  padding: 5px;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.privateChatWindowSend {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  color: black;
+  font-size: 12px;
+  right: 0;
+  cursor: pointer;
+  bottom: 0;
+  padding: 5px;
+  background-color: #dddbdb;
+  background-image: url(../images/privateChat.png);
+  background-size: cover;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .changeMessageListBox {
   position: relative;
   height: 85%;
@@ -302,19 +348,19 @@ html,body {
   overflow-anchor: none;
 }
 
-.changeMessageListBox::-webkit-scrollbar {display: none;}
+/*.changeMessageListBox::-webkit-scrollbar {display: none;}*/
 
 .chatMessageList {
   position: relative;
-  min-height: 100%;
+  height: 150px;
+  bottom: 25px;
   width: 100%;
   float: left;
   background-color: white;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  overflow-anchor: auto;
-  height: 1px;
+  overflow: auto;
 }
 
 .chatMessageList::-webkit-scrollbar {display: none;}

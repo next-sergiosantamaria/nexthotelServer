@@ -41,14 +41,18 @@ keyControls = function(avatarObject) {
     }
 
     this.sendMessage = (message) => {
-        if(socket) {  
+        if(socket && message && message !== '') {  
             if (privateChatReceiverUser) {
                 fillWithNewMessage(saveData.userName, message, true);
                 new Audio('./audio/clearly.mp3').play();
                 socket.emit('privateChat', { sender: saveData.userName, receiver: privateChatReceiverUser, message: message});
+                document.getElementById('textPrivate').value = '';
+                document.getElementById('textPrivate').focus();
             }
             else if(saveData && saveData.userName){ 
                 socket.emit('publicChat', { sender: saveData.userName, message: message});
+                document.getElementById('textGeneral').value = '';
+                document.getElementById('textGeneral').focus();
             }
         }
     }
@@ -69,7 +73,6 @@ keyControls = function(avatarObject) {
             switch(true) {
                 case event.key == "Enter":
                     this.sendMessage(event.target.value);
-                    event.target.value = '';
             }
         }
         else {
