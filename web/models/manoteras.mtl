@@ -1,5 +1,5 @@
 # Blender MTL File: 'manoteras.blend'
-# Material Count: 25
+# Material Count: 29
 
 newmtl aqua1
 Ns 225.000000
@@ -202,6 +202,50 @@ Ke 0.0 0.0 0.0
 Ni 1.000000
 d 1.000000
 illum 1
+
+newmtl transparentBusinessLet
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd business.png
+
+newmtl transparentCartelBiblio
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd cartelBiblioteca.png
+
+newmtl transparentCartelComedor
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd cartelComedor.png
+
+newmtl transparentCartelLab
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd cartelLaboratorio.png
 
 newmtl transparentKitchen
 Ns 225.000000
