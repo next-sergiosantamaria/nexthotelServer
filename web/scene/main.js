@@ -226,6 +226,7 @@ function loadAvatar() {
     avatar.add(collisionCube);
     avatar.name = saveData.userName;
     turnOnCollision = true;
+    avatar.position.set(0, 0, 0);
     scene.add(avatar);
     avatarControls.checkCollision = () => checkCollision(collisionCube);
     //send data to inscribe user in system and print in other client
@@ -335,7 +336,6 @@ function loadOffice(officeName) {
     if(debbugerSkipOption == true) {
         localStorage.setItem('configDataObject', JSON.stringify(saveData));
     }
-    christmastTime();
 }
 
 function skipMenus(savedDatas){

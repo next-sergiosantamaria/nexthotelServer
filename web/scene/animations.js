@@ -68,7 +68,7 @@ function fillWithNewMessage(writer, text, owner) {
     node.insertAdjacentHTML("beforeend", '<p class=' + textClass + '>' + textToPrint + '</p>');
 }
 
-function showSectionInfo(name) {;
+function showSectionInfo(name, desc) {;
     removeCollision()
     //show section info box
     TweenMax.to("#popInfoBox", 0.2, { 
@@ -76,5 +76,5 @@ function showSectionInfo(name) {;
         ease: Back.easeOut 
     });
     var popInfoNode = document.getElementById("popInfoBox");
-    popInfoNode.insertAdjacentHTML("beforeend", '<p class="popInfoTitle">' + name + '</p>');
+    popInfoNode.insertAdjacentHTML("beforeend", '<p class="popInfoTitle">' + name + '</p><p class="popInfoDesc">' + desc + '</p>');
 }

@@ -8,10 +8,14 @@ fetch('/user/list').then(response =>
 
 function checkIfUserExists(input) {
   const user = input.value;
-
-  if (userList.find(item => item.name === user)) {
+  if(user == '') {
     configAvatar.setAttribute('disabled', 'true');
+    document.getElementById('userNameAdvice').innerHTML = 'Debes introducir un nombre de usuario'
+  } else if (userList.find(item => item.name === user)) {
+    configAvatar.setAttribute('disabled', 'true');
+    document.getElementById('userNameAdvice').innerHTML = 'Este nombre ya se esta usando, elige otro'
   } else {
     configAvatar.setAttribute('disabled', '');
+    document.getElementById('userNameAdvice').innerHTML = ''
   }
 }

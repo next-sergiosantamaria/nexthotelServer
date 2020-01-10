@@ -1,67 +1,81 @@
+let deptInfoDescription = {
+    "Innovacion": 'Este es el departamento donde se descubre el futuro de la tecnologia.',
+    "Comedor": '¿tienes hambre?, ¿necesitas un break?, sientate un rato en buena compañía y disfruta.',
+    "People": 'Departamento de seres humanos, para servirte y protegerte.',
+    "IT": 'Portatil, redes, cuentas... si necesitas algo para el desempeño de tu trabajo, este es tu equipo.',
+    "Alacena": '¿te sueles traer comida de casa?, aqui estara a buen recaudo.',
+    "Comunicación": 'Te mantienen al tanto de todo lo que ocurre para que no te pierdas nada.',
+    "Finance": 'Asuntos de dinero y jefatura del estado.',
+    "Recepción": 'Gracias a su ayuda, nunca pierdes el rumbo.',
+    "Cocina": 'Mucho de todo y Mucho de sano. Compra lo que quieras para mantener una dieta equilibrada.'
+};
 function doSomething(objectName){
     switch (objectName){
-        case "innovacion":
-            showSectionInfo(objectName);
+        case "Innovacion":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);
             break;
         case "MesasDBI":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break; 
         case "MesasMCrespo":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "MesasMobileChannel":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "MesasWebChannel":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "MesasTipo2":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "MesasTipo3":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
-        case "RRHH":
-            showSectionInfo(objectName);   
+        case "People":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
-        case "comedor":
-            showSectionInfo(objectName);   
+        case "Comedor":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
-        case "recepcion":
-            showSectionInfo(objectName);   
+        case "Recepción":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "agora":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
-        case "laboratorio":
-            showSectionInfo(objectName);   
+        case "Laboratorio":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "jefatura":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            break;
+        case "Comunicación":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "quickstarter":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "biblioteca":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "IT":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            break;
+        case "Alacena":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            break;
+        case "Finance":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            break;
+        case "Cocina":
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "laboratorio":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         case "laboratorio":
-            showSectionInfo(objectName);   
-            break;
-        case "laboratorio":
-            showSectionInfo(objectName);   
-            break;
-        case "laboratorio":
-            showSectionInfo(objectName);   
-            break;
-        case "laboratorio":
-            showSectionInfo(objectName);   
+            showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break;
         default:
             console.log("collision con usuario: ", objectName);
