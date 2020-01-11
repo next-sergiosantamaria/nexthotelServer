@@ -69,7 +69,8 @@ function fillWithNewMessage(writer, text, owner) {
 }
 
 function showSectionInfo(name, desc) {;
-    removeCollision()
+    removeCollision();
+    desc = desc || '';
     //show section info box
     TweenMax.to("#popInfoBox", 0.2, { 
         left: 30, 

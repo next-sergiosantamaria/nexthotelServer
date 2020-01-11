@@ -23,7 +23,7 @@ avatar.name = 'avatar';
 
 let interactiveObjects = [];
 
-const plantas = ['manoteras', 'tablas2-P1', 'tablas2-P0', 'tablas2-P2'];
+const plantas = ['tablas2-P2', 'tablas2-P1', 'tablas2-P0', 'manoteras'];
 const modelos_head = ['head_1', 'head_2','head_3', 'head_4', 'head_5', 'head_6'];
 const modelos_body = ['body_1','body_2','body_3','body_4', 'body_5', 'body_6', 'body_7', 'body_8', 'body_9'];
 
@@ -101,7 +101,7 @@ function subscribeToPersonalChannel(userName) {
 
 function generateMenu(){
     plantas.map(function(plantName){
-        $(".officeSelectorMenu").prepend('<div class="plantSelectButton" onclick=loadOffice("'+plantName+'")>'+plantName+'</div>');
+        $(".officeSelectorMenu").prepend('<div class="plantSelectButton '+plantName+"Style"+'" onclick=loadOffice("'+plantName+'")><P>'+plantName+'</p></div>');
     });
 }
 

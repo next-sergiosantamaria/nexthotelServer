@@ -176,6 +176,31 @@ html,body {
   height: 35%;
   font-size: 12px;
   padding-top: 16px;
+  opacity: 0.5;
+  transition: opacity 0.2s linear;
+}
+.manoterasStyle {
+  background-image: url("../images/manoterasIcon.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.tablas2-P0Style {
+  background-image: url("../images/p0Icon.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.tablas2-P1Style {
+  background-image: url("../images/p1Icon.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.tablas2-P2Style {
+  background-image: url("../images/p2Icon.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.plantSelectButton:hover {
+  opacity: 1;
 }
 .navigateButtons{
   width: 100%;

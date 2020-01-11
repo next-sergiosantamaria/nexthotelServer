@@ -14,23 +14,23 @@ function doSomething(objectName){
         case "Innovacion":
             showSectionInfo(objectName, deptInfoDescription[objectName]);
             break;
-        case "MesasDBI":
+        case "DBI":
             showSectionInfo(objectName, deptInfoDescription[objectName]);   
             break; 
         case "MesasMCrespo":
-            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            showSectionInfo("M Crespo", deptInfoDescription[objectName]);   
             break;
         case "MesasMobileChannel":
-            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            showSectionInfo("Mobile channel", deptInfoDescription[objectName]);   
             break;
         case "MesasWebChannel":
-            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            showSectionInfo("Web channel", deptInfoDescription[objectName]);   
             break;
-        case "MesasTipo2":
-            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+        case "SalaReunion":
+            showSectionInfo("Sala reunión", deptInfoDescription[objectName]);   
             break;
         case "MesasTipo3":
-            showSectionInfo(objectName, deptInfoDescription[objectName]);   
+            showSectionInfo("Sala de reunión pequeña", deptInfoDescription[objectName]);   
             break;
         case "People":
             showSectionInfo(objectName, deptInfoDescription[objectName]);   
