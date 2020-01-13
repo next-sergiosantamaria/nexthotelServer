@@ -16,16 +16,10 @@ exports.index = function (req, res) {
 
 exports.new = function (req, res) {
     var contact = new Contact();
-    contact.userId = req.body.userId ? req.body.userId : "null";
     contact.userName = req.body.userName ? req.body.userName : "null";
-    contact.userBirthDate = req.body.userBirthDate ? req.body.userBirthDate : "null";
-    contact.userGender = req.body.userGender ? req.body.userGender : "null";
-    contact.currentDate = req.body.currentDate ? req.body.currentDate : "null";
-    contact.paneta = req.body.planeta ? req.body.planeta : "null";
-    contact.skills = req.body.skills ? req.body.skills : "null";
-    contact.proyecto = req.body.experiment ? req.body.experiment : "null";
-    contact.avatarConfig = req.body.avatarConfig ? req.body.avatarConfig : "null";
-    console.log(req.body);
+    contact.userHead = req.body.userHead ? req.body.userHead : "null";
+    contact.userBody = req.body.userBody ? req.body.userBody : "null";
+    contact.office = req.body.office ? req.body.office : "null";
     contact.save(function (err) {
         // if (err)
         //     res.json(err);

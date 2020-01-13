@@ -2,7 +2,7 @@
 var express = require('express'); 
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let apiRoutes = require("./routes/test.route.js")
+let apiRoutes = require("./routes/routes.js")
 var sessionController = require('./controllers/sessionController');
 var fs = require('fs');
 var https = require('https');
@@ -32,10 +32,13 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "'GET,PUT,POST,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    bodyParser.urlencoded({ extended: true });
-    bodyParser.json();
     next();
 });
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 app.use(express.static(process.env.SERVE_DIRECTORY || 'web'));
 
@@ -73,4 +76,7 @@ secIO.on('connection', function(socket) {
 
 sessionController.expireSessions(secIO);
 
-//mongoose.connect("mongodb://localhost/TestingDatas", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/hotelUsersData", { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('connected to database'));

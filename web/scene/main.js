@@ -46,8 +46,8 @@ $(document).ready(function () {
     }
     if( debbugerSkipOption == false ) localStorage.removeItem('configDataObject');
 
-    //socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
-    socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
+    socket = io.connect(`https://localhost:3031`, {transports: ['websocket']});
+    //socket = io.connect(`https://34.240.9.59:3031`, {transports: ['websocket']});
 
     socket.on('newUserLogin', function(data){
         Object.values(data).map( element => {
@@ -331,7 +331,27 @@ function loadOffice(officeName) {
         }, onProgress, onError);
     });
     scene.add(planta);
-    Object.assign(saveData, avatarConfig, { office: officeName }, { userName: (document.getElementById("inputaNameLabel").value).replace(/\s/g, "_") });
+
+    let userNameInput = (document.getElementById("inputaNameLabel").value).replace(/\s/g, "_");
+    
+    //send data to database
+    let myHeaders = new Headers()
+    myHeaders.append('content-type', 'application/json')
+ 
+    const bodyToSend = { 
+        userName: userNameInput,
+        userHead: avatarConfig.head,
+        userBody: avatarConfig.body,
+        office: officeName
+    };
+
+    fetch('/newUser', { 
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(bodyToSend),  
+    });
+
+    Object.assign(saveData, avatarConfig, { office: officeName }, { userName: userNameInput });
     subscribeToPersonalChannel(saveData.userName);
     if(debbugerSkipOption == true) {
         localStorage.setItem('configDataObject', JSON.stringify(saveData));
