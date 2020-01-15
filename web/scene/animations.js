@@ -6,7 +6,7 @@ let tl = new TimelineMax({paused: true});
 
 tl
     .to("#logosBox", animVelocity, {x: -1500, ease: Back.easeInOut.config(1.4)})
-    .to("#avatarNamegBox", animVelocity, {left: 0, onComplete: focusOnImput, ease: Back.easeInOut.config(1.4)})
+    .to("#avatarNamegBox", animVelocity, {left: 0, onComplete: focusOnInput, ease: Back.easeInOut.config(1.4)})
     .addLabel("configName")
     .to("#avatarNamegBox", animVelocity, {left: -3000, ease: Back.easeInOut.config(1.4)})
     .to("#avatarConfigBox", animVelocity, {left: 0, ease: Back.easeInOut.config(1.4)})
@@ -17,11 +17,13 @@ tl
     .to("#mainScreen", animVelocity*2, {left: -3000, ease: Back.easeOut.config(1.4)})
     .addLabel("openApp");
 
-function focusOnImput() {
-    document.getElementById("inputaNameLabel").focus();
+function focusOnInput() {
+    document.getElementById("inputNameLabel").focus();
 }
 
 function removeCollision(){
+    document.body.focus();
+
     //hide section info box
     TweenMax.to("#popInfoBox", 0.2, { 
         left: -1500, 
@@ -29,7 +31,7 @@ function removeCollision(){
     });
     //hide private chat box
     TweenMax.to(".privateChatWindow", 0.2, { 
-        bottom: 1500, 
+        bottom: -1500, 
         ease: Power1.easeIn });
     //remove private chat text lines
     const node= document.getElementById("chatMessageList");
@@ -42,8 +44,6 @@ function removeCollision(){
     while (popInfoNode.firstChild) {
         popInfoNode.removeChild(popInfoNode.firstChild);
     }
-
-    document.body.focus();
 }
 
 function openPublicChat(){
